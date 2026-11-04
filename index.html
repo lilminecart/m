@@ -6,21 +6,22 @@
 <meta name="robots" content="noindex">
 <style>
 :root{color-scheme:light}
-html,body{height:100%;margin:0;background:#fff}
-body{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:36px;padding:0 16px}
-#p{width:170px;height:170px;border-radius:50%;border:0;background:#1d4ed8;box-shadow:0 6px 20px rgba(0,0,0,.25);cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;padding:0}
-#p:active{transform:scale(.96)}
-#p svg{width:76px;height:76px;fill:#fff}
-audio{width:100%;max-width:480px}
+html,body{height:100%;margin:0;background:#fafafa}
+body{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:40px;padding:0 16px}
+#p{width:132px;height:132px;border:1px solid #b5b5b5;background:transparent;border-radius:0;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;-webkit-tap-highlight-color:transparent;transition:border-color .2s}
+#p:hover,#p:active{border-color:#8a8a8a}
+#p svg{width:48px;height:48px;fill:none;stroke:#9a9a9a;stroke-width:1;stroke-linejoin:miter;vector-effect:non-scaling-stroke}
+audio{width:100%;max-width:420px;opacity:.75}
 </style>
 </head><body>
 <button id="p" type="button" aria-label="Play">
-  <svg id="i" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+  <svg id="i" viewBox="0 0 48 48"><path vector-effect="non-scaling-stroke" d="M16 10 L38 24 L16 38 Z"/></svg>
 </button>
 <audio id="a" controls playsinline preload="metadata" src="a.mp3"></audio>
 <script>
 var a=document.getElementById('a'),p=document.getElementById('p'),i=document.getElementById('i');
-var PLAY='<path d="M8 5v14l11-7z"/>',PAUSE='<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>';
+var PLAY='<path vector-effect="non-scaling-stroke" d="M16 10 L38 24 L16 38 Z"/>',
+    PAUSE='<path vector-effect="non-scaling-stroke" d="M15 11 H20 V37 H15 Z M28 11 H33 V37 H28 Z"/>';
 p.onclick=function(){if(a.paused){a.play();}else{a.pause();}};
 a.onplay=function(){i.innerHTML=PAUSE;p.setAttribute('aria-label','Pause');};
 a.onpause=a.onended=function(){i.innerHTML=PLAY;p.setAttribute('aria-label','Play');};
