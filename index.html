@@ -7,9 +7,22 @@
 <style>
 :root{color-scheme:light}
 html,body{height:100%;margin:0;background:#fff}
-body{display:flex;align-items:center;justify-content:center;padding:0 16px}
+body{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:36px;padding:0 16px}
+#p{width:170px;height:170px;border-radius:50%;border:0;background:#1d4ed8;box-shadow:0 6px 20px rgba(0,0,0,.25);cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;padding:0}
+#p:active{transform:scale(.96)}
+#p svg{width:76px;height:76px;fill:#fff}
 audio{width:100%;max-width:480px}
 </style>
 </head><body>
-<audio controls playsinline preload="metadata" src="a.mp3"></audio>
+<button id="p" type="button" aria-label="Play">
+  <svg id="i" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+</button>
+<audio id="a" controls playsinline preload="metadata" src="a.mp3"></audio>
+<script>
+var a=document.getElementById('a'),p=document.getElementById('p'),i=document.getElementById('i');
+var PLAY='<path d="M8 5v14l11-7z"/>',PAUSE='<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>';
+p.onclick=function(){if(a.paused){a.play();}else{a.pause();}};
+a.onplay=function(){i.innerHTML=PAUSE;p.setAttribute('aria-label','Pause');};
+a.onpause=a.onended=function(){i.innerHTML=PLAY;p.setAttribute('aria-label','Play');};
+</script>
 </body></html>
